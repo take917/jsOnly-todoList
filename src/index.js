@@ -3,7 +3,12 @@ const onClickAdd = () => {
 
   // テキストBOX入力値を初期化
   document.getElementById("add-text").value = "";
+  createIncompleteTodo(inputText);
+};
 
+// 未完了のTODOを作成
+
+const createIncompleteTodo = (todo) => {
   // liタグの作成
   const li = document.createElement("li");
 
@@ -24,6 +29,13 @@ const onClickAdd = () => {
     completeButton.remove();
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
+
+    backButton.addEventListener("click", () => {
+      const todoText = backButton.previousElementSibling.innerText;
+      createIncompleteTodo(todoText);
+      backButton.closest("li").remove();
+    });
+
     moveTarget.firstElementChild.appendChild(backButton);
     document.getElementById("complete-list").appendChild(moveTarget);
   });
@@ -41,7 +53,7 @@ const onClickAdd = () => {
   p.className = "todo-item";
 
   // 生成したタグにテキストを入れる
-  p.innerText = inputText;
+  p.innerText = todo;
   div.appendChild(p);
   div.appendChild(completeButton);
   div.appendChild(deleteButton);

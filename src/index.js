@@ -26,7 +26,9 @@ const onClickAdd = () => {
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    alert("delete");
+    const deleteTarget = deleteButton.closest("li");
+    document.getElementById("incomplete-list").removeChild(deleteTarget);
+    // console.log(deleteTarget);
   });
 
   // 生成divにクラスを適用

@@ -19,7 +19,13 @@ const onClickAdd = () => {
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
-    alert("click");
+    const moveTarget = completeButton.closest("li");
+    completeButton.nextElementSibling.remove();
+    completeButton.remove();
+    const backButton = document.createElement("button");
+    backButton.innerText = "戻す";
+    moveTarget.firstElementChild.appendChild(backButton);
+    document.getElementById("complete-list").appendChild(moveTarget);
   });
 
   //削除ボタン作成
